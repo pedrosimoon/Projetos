@@ -48,6 +48,12 @@ type
 var
   dm: Tdm;
 
+//VARIÁVEIS GLOBAIS
+var
+  id_func: String;
+  nome_func: String;
+  cargo_func: String;
+
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}

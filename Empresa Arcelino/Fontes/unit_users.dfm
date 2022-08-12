@@ -324,7 +324,6 @@ object frm_usuario: Tfrm_usuario
     Height = 638
     Align = alClient
     TabOrder = 1
-    ExplicitTop = 86
     object Label2: TLabel
       Left = 48
       Top = 104
