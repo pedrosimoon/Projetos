@@ -89,6 +89,7 @@ type
     procedure txt_buscar_nomeChange(Sender: TObject);
     procedure txt_buscar_cpfChange(Sender: TObject);
     procedure rb_cpfClick(Sender: TObject);
+    procedure dbg_funcionarioDblClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -382,6 +383,19 @@ begin
     end;
 
   cpf_antigo := dm.query_func.FieldByName('cpf').Value;
+
+end;
+
+procedure Tfrm_funcionario.dbg_funcionarioDblClick(Sender: TObject);
+begin
+  if chamada = 'rec' then
+    begin
+      id_func := dm.query_func.FieldByName('id_funcionario').Value;
+      nome_func := dm.query_func.FieldByName('nome').Value;
+      cargo_func := dm.query_func.FieldByName('cargo').Value;
+      Close;
+      chamada := '';
+    end;
 
 end;
 

@@ -54,6 +54,8 @@ var
   nome_func: String;
   cargo_func: String;
 
+  chamada: String;
+
 implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}

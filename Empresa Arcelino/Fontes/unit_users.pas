@@ -38,8 +38,10 @@ type
     Label18: TLabel;
     SpeedButton1: TSpeedButton;
     procedure SpeedButton1Click(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
+    procedure associar_campos;
   public
     { Public declarations }
   end;
@@ -51,8 +53,19 @@ implementation
 
 {$R *.dfm}
 
+procedure Tfrm_usuario.associar_campos;
+begin
+  //Aqui virá o código para atribuição de valores na tabela de usuários
+end;
+
+procedure Tfrm_usuario.FormActivate(Sender: TObject);
+begin
+  associar_campos;
+end;
+
 procedure Tfrm_usuario.SpeedButton1Click(Sender: TObject);
 begin
+  chamada := 'rec';
   frm_funcionario := Tfrm_funcionario.Create(self);
   frm_funcionario.ShowModal;
 end;

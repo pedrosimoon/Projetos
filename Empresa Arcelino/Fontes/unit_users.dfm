@@ -14,6 +14,7 @@ object frm_usuario: Tfrm_usuario
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
+  OnActivate = FormActivate
   PixelsPerInch = 96
   TextHeight = 17
   object pnl_superior: TPanel

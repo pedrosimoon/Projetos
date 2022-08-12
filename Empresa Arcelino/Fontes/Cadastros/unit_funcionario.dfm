@@ -909,6 +909,7 @@ object frm_funcionario: Tfrm_funcionario
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
       OnCellClick = dbg_funcionarioCellClick
+      OnDblClick = dbg_funcionarioDblClick
     end
   end
   object ImageList1: TImageList
