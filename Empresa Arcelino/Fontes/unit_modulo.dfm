@@ -9,6 +9,7 @@ object dm: Tdm
       'User_Name=root'
       'Password=@mora1759293'
       'DriverID=MySQL')
+    Connected = True
     LoginPrompt = False
     Left = 64
     Top = 56
@@ -192,5 +193,67 @@ object dm: Tdm
       FieldName = 'data_contrato'
       Origin = 'data_contrato'
     end
+  end
+  object tb_usuario: TFDTable
+    IndexFieldNames = 'id_usuario'
+    Connection = conexao
+    TableName = 'empresa_arcelino.usuario'
+    Left = 288
+    Top = 176
+  end
+  object query_usuario: TFDQuery
+    Connection = conexao
+    SQL.Strings = (
+      'SELECT * FROM usuario')
+    Left = 288
+    Top = 256
+    object query_usuarioid_usuario: TFDAutoIncField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+      ProviderFlags = [pfInWhere, pfInKey]
+      Visible = False
+    end
+    object query_usuarionome: TStringField
+      DisplayLabel = 'Nome'
+      DisplayWidth = 15
+      FieldName = 'nome'
+      Origin = 'nome'
+      Required = True
+      Size = 30
+    end
+    object query_usuariousuario: TStringField
+      DisplayLabel = 'Usu'#225'rio'
+      DisplayWidth = 15
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      Size = 25
+    end
+    object query_usuariosenha: TStringField
+      DisplayLabel = 'Senha'
+      DisplayWidth = 10
+      FieldName = 'senha'
+      Origin = 'senha'
+      Required = True
+      Size = 10
+    end
+    object query_usuariocargo: TStringField
+      DisplayLabel = 'Cargo'
+      DisplayWidth = 15
+      FieldName = 'cargo'
+      Origin = 'cargo'
+      Required = True
+      Size = 25
+    end
+    object query_usuariofuncionario_id_funcionario: TIntegerField
+      FieldName = 'funcionario_id_funcionario'
+      Origin = 'funcionario_id_funcionario'
+      Required = True
+    end
+  end
+  object ds_usuario: TDataSource
+    DataSet = query_usuario
+    Left = 288
+    Top = 328
   end
 end

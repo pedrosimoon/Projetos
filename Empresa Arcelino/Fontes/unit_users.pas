@@ -36,12 +36,16 @@ type
     Label17: TLabel;
     btn_excluir: TSpeedButton;
     Label18: TLabel;
-    SpeedButton1: TSpeedButton;
-    procedure SpeedButton1Click(Sender: TObject);
+    btn_busca_func: TSpeedButton;
+    procedure btn_busca_funcClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btn_novoClick(Sender: TObject);
   private
     { Private declarations }
     procedure associar_campos;
+    procedure desabiltar_campos;
+    procedure habilitar_campos;
   public
     { Public declarations }
   end;
@@ -55,7 +59,20 @@ implementation
 
 procedure Tfrm_usuario.associar_campos;
 begin
-  //Aqui virá o código para atribuição de valores na tabela de usuários
+  dm.query_usuario.FieldByName('nome').Value                       := Trim(txt_nome.Text);
+  dm.query_usuario.FieldByName('usuario').Value                    := Trim(txt_usuario.Text);
+  dm.query_usuario.FieldByName('senha').Value                      := Trim(txt_senha.Text);
+  dm.query_usuario.FieldByName('cargo').Value                      := cargo_func;
+  dm.query_usuario.FieldByName('funcionario_id_funcionario').Value := id_func;
+end;
+
+procedure Tfrm_usuario.desabiltar_campos;
+begin
+  txt_nome.Enabled       := False;
+  btn_busca_func.Enabled := False;
+  txt_usuario.Enabled    := False;
+  txt_senha.Enabled      := False;
+
 end;
 
 procedure Tfrm_usuario.FormActivate(Sender: TObject);
@@ -63,11 +80,30 @@ begin
   associar_campos;
 end;
 
-procedure Tfrm_usuario.SpeedButton1Click(Sender: TObject);
+procedure Tfrm_usuario.FormShow(Sender: TObject);
 begin
-  chamada := 'rec';
+  dm.tb_usuario.Active := True;
+  desabiltar_campos;
+end;
+
+procedure Tfrm_usuario.habilitar_campos;
+begin
+  btn_busca_func.Enabled := True;
+  txt_usuario.Enabled    := True;
+  txt_senha.Enabled      := True;
+end;
+
+procedure Tfrm_usuario.btn_busca_funcClick(Sender: TObject);
+begin
+  chamada         := 'rec';
   frm_funcionario := Tfrm_funcionario.Create(self);
   frm_funcionario.ShowModal;
+end;
+
+procedure Tfrm_usuario.btn_novoClick(Sender: TObject);
+begin
+  habilitar_campos;
+  dm.tb_usuario.Insert;
 end;
 
 end.

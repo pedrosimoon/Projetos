@@ -15,6 +15,7 @@ object frm_usuario: Tfrm_usuario
   OldCreateOrder = False
   Position = poScreenCenter
   OnActivate = FormActivate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 17
   object pnl_superior: TPanel
@@ -365,7 +366,7 @@ object frm_usuario: Tfrm_usuario
       ParentFont = False
     end
     object btn_novo: TSpeedButton
-      Left = 71
+      Left = 55
       Top = 535
       Width = 50
       Height = 48
@@ -373,16 +374,17 @@ object frm_usuario: Tfrm_usuario
       ImageIndex = 0
       Images = ImageList1
       Flat = True
+      OnClick = btn_novoClick
     end
     object Label15: TLabel
-      Left = 79
+      Left = 63
       Top = 579
       Width = 32
       Height = 17
       Caption = 'Novo'
     end
     object btn_cancelar: TSpeedButton
-      Left = 213
+      Left = 205
       Top = 535
       Width = 50
       Height = 48
@@ -391,7 +393,7 @@ object frm_usuario: Tfrm_usuario
       Flat = True
     end
     object Label22: TLabel
-      Left = 213
+      Left = 205
       Top = 579
       Width = 50
       Height = 17
@@ -451,7 +453,7 @@ object frm_usuario: Tfrm_usuario
       Height = 17
       Caption = 'Excluir'
     end
-    object SpeedButton1: TSpeedButton
+    object btn_busca_func: TSpeedButton
       Left = 201
       Top = 118
       Width = 31
@@ -515,7 +517,7 @@ object frm_usuario: Tfrm_usuario
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
-      OnClick = SpeedButton1Click
+      OnClick = btn_busca_funcClick
     end
     object txt_nome: TSIMONEdit1
       Left = 48
@@ -546,6 +548,7 @@ object frm_usuario: Tfrm_usuario
       Top = 216
       Width = 737
       Height = 257
+      DataSource = dm.ds_usuario
       TabOrder = 3
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWindowText

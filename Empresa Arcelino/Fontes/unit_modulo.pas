@@ -38,6 +38,15 @@ type
     query_functelefone: TStringField;
     query_funccargo: TStringField;
     query_funcdata_contrato: TDateField;
+    tb_usuario: TFDTable;
+    query_usuario: TFDQuery;
+    ds_usuario: TDataSource;
+    query_usuarioid_usuario: TFDAutoIncField;
+    query_usuarionome: TStringField;
+    query_usuariousuario: TStringField;
+    query_usuariosenha: TStringField;
+    query_usuariocargo: TStringField;
+    query_usuariofuncionario_id_funcionario: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
