@@ -32,6 +32,7 @@ type
     procedure Usurios1Click(Sender: TObject);
     procedure Cargos3Click(Sender: TObject);
     procedure Cadastros2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
 
   private
     { Private declarations }
@@ -58,6 +59,12 @@ procedure Tfrm_menu.Cargos3Click(Sender: TObject);
 begin
   frm_cargo := Tfrm_cargo.Create(self);
   frm_cargo.ShowModal;
+end;
+
+procedure Tfrm_menu.FormCreate(Sender: TObject);
+begin
+  //frm_login.Hide;
+  //frm_login.Free;
 end;
 
 procedure Tfrm_menu.Funcionrio1Click(Sender: TObject);

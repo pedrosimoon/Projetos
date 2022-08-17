@@ -16,6 +16,7 @@ object frm_menu: Tfrm_menu
   OldCreateOrder = False
   Position = poScreenCenter
   WindowState = wsMaximized
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 17
   object Panel1: TPanel
@@ -28,10 +29,6 @@ object frm_menu: Tfrm_menu
     Color = clActiveCaption
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 296
-    ExplicitTop = 232
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Panel2: TPanel
       Left = 665
       Top = 0
@@ -42,9 +39,6 @@ object frm_menu: Tfrm_menu
       Color = clBtnShadow
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 664
-      ExplicitTop = 1
-      ExplicitHeight = 549
     end
   end
   object MainMenu1: TMainMenu

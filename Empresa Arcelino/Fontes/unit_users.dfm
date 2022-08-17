@@ -316,10 +316,11 @@ object frm_usuario: Tfrm_usuario
       Width = 161
       Height = 25
       TabOrder = 1
+      OnChange = txt_buscar_nomeChange
       MudarColor = 16773847
     end
   end
-  object Panel1: TPanel
+  object pnl_fundo: TPanel
     Left = 0
     Top = 81
     Width = 856
@@ -340,7 +341,7 @@ object frm_usuario: Tfrm_usuario
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 328
+      Left = 335
       Top = 104
       Width = 47
       Height = 17
@@ -409,6 +410,7 @@ object frm_usuario: Tfrm_usuario
       Images = ImageList1
       Enabled = False
       Flat = True
+      OnClick = btn_salvarClick
     end
     object Label16: TLabel
       Left = 383
@@ -528,11 +530,12 @@ object frm_usuario: Tfrm_usuario
       MudarColor = 16773847
     end
     object txt_usuario: TSIMONEdit1
-      Left = 328
+      Left = 335
       Top = 121
       Width = 153
       Height = 25
       TabOrder = 1
+      OnExit = txt_usuarioExit
       MudarColor = 16773847
     end
     object txt_senha: TSIMONEdit1
@@ -541,7 +544,8 @@ object frm_usuario: Tfrm_usuario
       Width = 153
       Height = 25
       TabOrder = 2
-      MudarColor = 14087422
+      OnExit = txt_senhaExit
+      MudarColor = 16773847
     end
     object DBGrid1: TDBGrid
       Left = 48

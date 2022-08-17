@@ -11,27 +11,27 @@ object dm: Tdm
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 64
-    Top = 56
+    Left = 29
+    Top = 19
   end
   object ds_cargo: TDataSource
     DataSet = query_cargo
-    Left = 64
-    Top = 320
+    Left = 29
+    Top = 283
   end
   object tb_cargo: TFDTable
     IndexFieldNames = 'id'
     Connection = conexao
     TableName = 'empresa_arcelino.cargo'
-    Left = 64
-    Top = 173
+    Left = 29
+    Top = 136
   end
   object query_cargo: TFDQuery
     Connection = conexao
     SQL.Strings = (
       'SELECT * FROM cargo order by cargo asc')
-    Left = 64
-    Top = 248
+    Left = 29
+    Top = 211
     object query_cargoid: TFDAutoIncField
       Alignment = taCenter
       DisplayLabel = 'ID'
@@ -50,26 +50,26 @@ object dm: Tdm
     end
   end
   object SQLDriverLink: TFDPhysMySQLDriverLink
-    Left = 624
-    Top = 80
+    Left = 113
+    Top = 19
   end
   object tb_func: TFDTable
     Connection = conexao
     TableName = 'empresa_arcelino.funcionario'
-    Left = 192
-    Top = 173
+    Left = 112
+    Top = 135
   end
   object ds_func: TDataSource
     DataSet = query_func
-    Left = 192
-    Top = 320
+    Left = 112
+    Top = 282
   end
   object query_func: TFDQuery
     Connection = conexao
     SQL.Strings = (
       'SELECT * FROM funcionario')
-    Left = 192
-    Top = 256
+    Left = 112
+    Top = 212
     object query_funcid_funcionario: TFDAutoIncField
       FieldName = 'id_funcionario'
       Origin = 'id_funcionario'
@@ -198,19 +198,20 @@ object dm: Tdm
     IndexFieldNames = 'id_usuario'
     Connection = conexao
     TableName = 'empresa_arcelino.usuario'
-    Left = 288
-    Top = 176
+    Left = 201
+    Top = 133
   end
   object query_usuario: TFDQuery
     Connection = conexao
     SQL.Strings = (
       'SELECT * FROM usuario')
-    Left = 288
-    Top = 256
+    Left = 201
+    Top = 212
     object query_usuarioid_usuario: TFDAutoIncField
       FieldName = 'id_usuario'
       Origin = 'id_usuario'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
       Visible = False
     end
     object query_usuarionome: TStringField
@@ -249,11 +250,12 @@ object dm: Tdm
       FieldName = 'funcionario_id_funcionario'
       Origin = 'funcionario_id_funcionario'
       Required = True
+      Visible = False
     end
   end
   object ds_usuario: TDataSource
     DataSet = query_usuario
-    Left = 288
-    Top = 328
+    Left = 201
+    Top = 282
   end
 end
