@@ -172,7 +172,7 @@ begin
       exit;
     end;
 
-  //VERIFICAR SE O USUÁRIO JÁ ESTÁ CADASTRADO.
+  //VERIFICAR SE O CARGO JÁ ESTÁ CADASTRADO.
 
   //Fechando a query antes de chamar.
   dm.query_cargo.Close;

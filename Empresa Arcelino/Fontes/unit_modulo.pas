@@ -58,10 +58,11 @@ var
   dm: Tdm;
 
 //DECLARAÇÃO DAS VARIÁVEIS GLOBAIS
-  id_func   : String;
-  nome_func : String;
-  cargo_func: String;
-  chamada   : String;
+  id_func        : String;
+  nome_func      : String;
+  sobrenome_func : String;
+  cargo_func     : String;
+  chamada        : String;
 
 implementation
 

@@ -4,7 +4,7 @@ object frm_usuario: Tfrm_usuario
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Usu'#225'rios'
-  ClientHeight = 719
+  ClientHeight = 614
   ClientWidth = 856
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -15,7 +15,7 @@ object frm_usuario: Tfrm_usuario
   OldCreateOrder = False
   Position = poScreenCenter
   OnActivate = FormActivate
-  OnShow = FormShow
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 17
   object pnl_superior: TPanel
@@ -28,7 +28,7 @@ object frm_usuario: Tfrm_usuario
     ParentBackground = False
     TabOrder = 0
     object Label1: TLabel
-      Left = 555
+      Left = 551
       Top = 29
       Width = 70
       Height = 17
@@ -297,7 +297,7 @@ object frm_usuario: Tfrm_usuario
       ParentFont = False
     end
     object rb_nome: TRadioButton
-      Left = 628
+      Left = 626
       Top = 30
       Width = 59
       Height = 17
@@ -324,12 +324,13 @@ object frm_usuario: Tfrm_usuario
     Left = 0
     Top = 81
     Width = 856
-    Height = 638
+    Height = 533
     Align = alClient
     TabOrder = 1
+    ExplicitHeight = 638
     object Label2: TLabel
       Left = 48
-      Top = 104
+      Top = 48
       Width = 37
       Height = 17
       Caption = 'Nome'
@@ -341,8 +342,8 @@ object frm_usuario: Tfrm_usuario
       ParentFont = False
     end
     object Label3: TLabel
-      Left = 335
-      Top = 104
+      Left = 440
+      Top = 48
       Width = 47
       Height = 17
       Caption = 'Usu'#225'rio'
@@ -355,7 +356,7 @@ object frm_usuario: Tfrm_usuario
     end
     object Label4: TLabel
       Left = 631
-      Top = 104
+      Top = 48
       Width = 37
       Height = 17
       Caption = 'Senha'
@@ -368,7 +369,7 @@ object frm_usuario: Tfrm_usuario
     end
     object btn_novo: TSpeedButton
       Left = 55
-      Top = 535
+      Top = 439
       Width = 50
       Height = 48
       Cursor = crHandPoint
@@ -379,14 +380,14 @@ object frm_usuario: Tfrm_usuario
     end
     object Label15: TLabel
       Left = 63
-      Top = 579
+      Top = 483
       Width = 32
       Height = 17
       Caption = 'Novo'
     end
     object btn_cancelar: TSpeedButton
       Left = 205
-      Top = 535
+      Top = 439
       Width = 50
       Height = 48
       ImageIndex = 1
@@ -395,14 +396,14 @@ object frm_usuario: Tfrm_usuario
     end
     object Label22: TLabel
       Left = 205
-      Top = 579
+      Top = 483
       Width = 50
       Height = 17
       Caption = 'Cancelar'
     end
     object btn_salvar: TSpeedButton
       Left = 376
-      Top = 535
+      Top = 439
       Width = 50
       Height = 48
       Cursor = crHandPoint
@@ -414,14 +415,14 @@ object frm_usuario: Tfrm_usuario
     end
     object Label16: TLabel
       Left = 383
-      Top = 579
+      Top = 483
       Width = 35
       Height = 17
       Caption = 'Salvar'
     end
     object btn_editar: TSpeedButton
       Left = 563
-      Top = 535
+      Top = 439
       Width = 50
       Height = 48
       Cursor = crHandPoint
@@ -432,14 +433,14 @@ object frm_usuario: Tfrm_usuario
     end
     object Label17: TLabel
       Left = 571
-      Top = 579
+      Top = 483
       Width = 34
       Height = 17
       Caption = 'Editar'
     end
     object btn_excluir: TSpeedButton
       Left = 740
-      Top = 535
+      Top = 439
       Width = 50
       Height = 48
       Cursor = crHandPoint
@@ -450,14 +451,14 @@ object frm_usuario: Tfrm_usuario
     end
     object Label18: TLabel
       Left = 747
-      Top = 579
+      Top = 483
       Width = 37
       Height = 17
       Caption = 'Excluir'
     end
     object btn_busca_func: TSpeedButton
       Left = 201
-      Top = 118
+      Top = 62
       Width = 31
       Height = 30
       Cursor = crHandPoint
@@ -521,17 +522,31 @@ object frm_usuario: Tfrm_usuario
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       OnClick = btn_busca_funcClick
     end
+    object Label5: TLabel
+      Left = 250
+      Top = 48
+      Width = 70
+      Height = 17
+      Caption = 'Sobrenome'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object txt_nome: TSIMONEdit1
       Left = 48
-      Top = 121
+      Top = 65
       Width = 153
       Height = 25
+      ReadOnly = True
       TabOrder = 0
       MudarColor = 16773847
     end
     object txt_usuario: TSIMONEdit1
-      Left = 335
-      Top = 121
+      Left = 440
+      Top = 65
       Width = 153
       Height = 25
       TabOrder = 1
@@ -540,16 +555,16 @@ object frm_usuario: Tfrm_usuario
     end
     object txt_senha: TSIMONEdit1
       Left = 631
-      Top = 121
+      Top = 65
       Width = 153
       Height = 25
       TabOrder = 2
       OnExit = txt_senhaExit
       MudarColor = 16773847
     end
-    object DBGrid1: TDBGrid
+    object dg_usuario: TDBGrid
       Left = 48
-      Top = 216
+      Top = 136
       Width = 737
       Height = 257
       DataSource = dm.ds_usuario
@@ -559,6 +574,16 @@ object frm_usuario: Tfrm_usuario
       TitleFont.Height = -13
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
+    end
+    object txt_sobrenome: TSIMONEdit1
+      Left = 250
+      Top = 65
+      Width = 153
+      Height = 25
+      ReadOnly = True
+      TabOrder = 4
+      OnExit = txt_usuarioExit
+      MudarColor = 16773847
     end
   end
   object ImageList1: TImageList

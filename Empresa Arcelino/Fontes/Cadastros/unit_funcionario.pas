@@ -99,10 +99,10 @@ type
     procedure carregar_combobox;
     procedure buscar_nome;
     procedure buscar_cpf;
-  public
-    { Public declarations }
     procedure associar_campos;
     procedure listar;
+  public
+    { Public declarations }
   end;
 
 var
@@ -392,6 +392,7 @@ begin
     begin
       id_func := dm.query_func.FieldByName('id_funcionario').Value;
       nome_func := dm.query_func.FieldByName('nome').Value;
+      sobrenome_func := dm.query_func.FieldByName('sobrenome').Value;
       cargo_func := dm.query_func.FieldByName('cargo').Value;
       Close;
       chamada := '';

@@ -22,7 +22,7 @@ object dm: Tdm
   object tb_cargo: TFDTable
     IndexFieldNames = 'id'
     Connection = conexao
-    TableName = 'empresa_arcelino.cargo'
+    TableName = 'cargo'
     Left = 29
     Top = 136
   end
@@ -55,7 +55,7 @@ object dm: Tdm
   end
   object tb_func: TFDTable
     Connection = conexao
-    TableName = 'empresa_arcelino.funcionario'
+    TableName = 'funcionario'
     Left = 112
     Top = 135
   end
@@ -197,9 +197,9 @@ object dm: Tdm
   object tb_usuario: TFDTable
     IndexFieldNames = 'id_usuario'
     Connection = conexao
-    TableName = 'empresa_arcelino.usuario'
+    TableName = 'usuario'
     Left = 201
-    Top = 133
+    Top = 134
   end
   object query_usuario: TFDQuery
     Connection = conexao
