@@ -19,7 +19,7 @@ type
     txt_buscar_nome: TSIMONEdit1;
     pnl_fundo: TPanel;
     Label2: TLabel;
-    Label3: TLabel;
+    lbl_usuario: TLabel;
     Label4: TLabel;
     txt_nome: TSIMONEdit1;
     txt_usuario: TSIMONEdit1;
@@ -38,7 +38,7 @@ type
     btn_busca_func: TSpeedButton;
     btn_novo: TSpeedButton;
     txt_sobrenome: TSIMONEdit1;
-    Label5: TLabel;
+    lbl_sobrenome: TLabel;
     procedure btn_busca_funcClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure btn_novoClick(Sender: TObject);
@@ -47,6 +47,9 @@ type
     procedure txt_usuarioExit(Sender: TObject);
     procedure txt_buscar_nomeChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btn_cancelarClick(Sender: TObject);
+    procedure btn_editarClick(Sender: TObject);
+    procedure dg_usuarioCellClick(Column: TColumn);
   private
     { Private declarations }
     procedure associar_campos;
@@ -55,12 +58,16 @@ type
     procedure limpar_campos;
     procedure listar;
     procedure buscar_nome;
+    procedure esconder_campos;
+    procedure mostrar_campos;
   public
     { Public declarations }
   end;
 
 var
   frm_usuario: Tfrm_usuario;
+  id             : String;
+  usuario_antigo : String;
 
 implementation
 
@@ -68,7 +75,7 @@ implementation
 
 procedure Tfrm_usuario.associar_campos;
 begin
-  dm.tb_usuario.FieldByName('nome').Value                       := nome_func;
+  dm.tb_usuario.FieldByName('nome').Value                       := Trim(txt_nome.Text);
   dm.tb_usuario.FieldByName('usuario').Value                    := Trim(txt_usuario.Text);
   dm.tb_usuario.FieldByName('senha').Value                      := Trim(txt_senha.Text);
   dm.tb_usuario.FieldByName('cargo').Value                      := cargo_func;
@@ -81,6 +88,35 @@ begin
   txt_usuario.Enabled    := False;
   txt_senha.Enabled      := False;
   txt_sobrenome.Enabled  := False;
+end;
+
+procedure Tfrm_usuario.dg_usuarioCellClick(Column: TColumn);
+begin
+  esconder_campos;
+  habilitar_campos;
+  btn_editar.Enabled   := True;
+  btn_novo.Enabled     := False;
+  btn_excluir.Enabled  := False;
+  btn_cancelar.Enabled := True;
+
+  dm.tb_usuario.Edit;
+
+  txt_nome.Text := dm.tb_usuario.FieldByName('nome').Value;
+  txt_usuario.Text := dm.tb_usuario.FieldByName('usuario').Value;
+  txt_senha.Text := dm.tb_usuario.FieldByName('senha').Value;
+
+  id := dm.query_usuario.FieldByName('id_usuario').Value;
+  usuario_antigo := dm.query_usuario.FieldByName('usuario').Value;
+end;
+
+procedure Tfrm_usuario.esconder_campos;
+begin
+  lbl_sobrenome.Visible := False;
+  txt_sobrenome.Visible := False;
+  txt_usuario.Left := 340;
+  txt_usuario.Top  := 65;
+  lbl_usuario.Left := 340;
+  lbl_usuario.Top := 48;
 end;
 
 procedure Tfrm_usuario.FormActivate(Sender: TObject);
@@ -119,6 +155,16 @@ begin
   dm.query_usuario.Open;
 end;
 
+procedure Tfrm_usuario.mostrar_campos;
+begin
+  lbl_sobrenome.Visible := True;
+  txt_sobrenome.Visible := True;
+  txt_usuario.Left := 440;
+  txt_usuario.Top  := 65;
+  lbl_usuario.Left := 440;
+  lbl_usuario.Top := 48;
+end;
+
 procedure Tfrm_usuario.txt_buscar_nomeChange(Sender: TObject);
 begin
   buscar_nome;
@@ -151,11 +197,79 @@ begin
   frm_funcionario.Show;
 end;
 
+procedure Tfrm_usuario.btn_cancelarClick(Sender: TObject);
+begin
+  dm.query_usuario.Close;
+  dm.query_usuario.SQL.Clear;
+  limpar_campos;
+  desabilitar_campos;
+  listar;
+  mostrar_campos;
+  btn_novo.Enabled     := True;
+  btn_cancelar.Enabled := True;
+end;
+
+procedure Tfrm_usuario.btn_editarClick(Sender: TObject);
+var
+  usuario : String;
+begin
+
+  mostrar_campos;
+
+  if txt_usuario.Text = '' then
+    begin
+      MessageDlg('Campo Obrigatório!', mtError, mbOKCancel, 0);
+      txt_usuario.SetFocus;
+      exit;
+    end;
+
+  if usuario_antigo <> txt_usuario.Text then
+    begin
+      dm.query_usuario.Close;
+      dm.query_usuario.SQL.Clear;
+      dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE usuario = ' + QuotedStr(Trim(txt_usuario.Text)));
+      dm.query_usuario.Open;
+
+      if not dm.query_usuario.IsEmpty then
+        begin
+          usuario := dm.query_usuario['usuario'];
+          MessageDlg('Usuário: ' + usuario + ' já cadastrado!', mtInformation, mbOKCancel, 0);
+          txt_usuario.SetFocus;
+          txt_usuario.Text := '';
+          exit;
+        end;
+   end;
+
+  //associar_campos;
+
+  dm.query_usuario.Close;
+  dm.query_usuario.SQL.Clear;
+  dm.query_usuario.SQL.Add('UPDATE usuario SET nome = :nome, usuario = :usuario, senha = :senha WHERE id_usuario = :id_usuario');
+
+  dm.query_usuario.ParamByName('nome').Value    := Trim(txt_nome.Text);
+  dm.query_usuario.ParamByName('usuario').Value := Trim(txt_usuario.Text);
+  dm.query_usuario.ParamByName('senha').Value   := Trim(txt_senha.Text);
+  dm.query_usuario.ExecSQL;
+
+  MessageDlg('Editado com Sucesso!', mtInformation, mbOKCancel, 0);
+
+  listar;
+  desabilitar_campos;
+  btn_editar.Enabled  := False;
+  btn_excluir.Enabled := False;
+    
+end;
+
 procedure Tfrm_usuario.btn_novoClick(Sender: TObject);
 begin
   listar;
+  limpar_campos;
   habilitar_campos;
-  btn_salvar.Enabled := True;
+  mostrar_campos;
+  btn_editar.Enabled   := False;
+  btn_excluir.Enabled  := False;
+  btn_cancelar.Enabled := True;
+  btn_salvar.Enabled   := True;
 
   dm.tb_usuario.Insert;
 end;
@@ -205,7 +319,7 @@ begin
   MessageDlg('Salvo com sucesso!', mtInformation, mbOKCancel, 0);
 
   listar;
-  limpar_campos;
+  //limpar_campos;
   desabilitar_campos;
   btn_salvar.Enabled     := False;
   btn_novo.Enabled       := True;

@@ -341,7 +341,7 @@ object frm_usuario: Tfrm_usuario
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object Label3: TLabel
+    object lbl_usuario: TLabel
       Left = 440
       Top = 48
       Width = 47
@@ -393,6 +393,7 @@ object frm_usuario: Tfrm_usuario
       ImageIndex = 1
       Images = ImageList1
       Flat = True
+      OnClick = btn_cancelarClick
     end
     object Label22: TLabel
       Left = 205
@@ -430,6 +431,7 @@ object frm_usuario: Tfrm_usuario
       Images = ImageList1
       Enabled = False
       Flat = True
+      OnClick = btn_editarClick
     end
     object Label17: TLabel
       Left = 571
@@ -522,7 +524,7 @@ object frm_usuario: Tfrm_usuario
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       OnClick = btn_busca_funcClick
     end
-    object Label5: TLabel
+    object lbl_sobrenome: TLabel
       Left = 250
       Top = 48
       Width = 70
@@ -574,6 +576,7 @@ object frm_usuario: Tfrm_usuario
       TitleFont.Height = -13
       TitleFont.Name = 'Segoe UI'
       TitleFont.Style = []
+      OnCellClick = dg_usuarioCellClick
     end
     object txt_sobrenome: TSIMONEdit1
       Left = 250
