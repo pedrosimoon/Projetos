@@ -16,7 +16,7 @@ type
     Image1: TImage;
     Label14: TLabel;
     rb_nome: TRadioButton;
-    txt_buscar_nome: TSIMONEdit1;
+    txt_buscar_usuario: TSIMONEdit1;
     pnl_fundo: TPanel;
     Label2: TLabel;
     lbl_usuario: TLabel;
@@ -45,11 +45,12 @@ type
     procedure btn_salvarClick(Sender: TObject);
     procedure txt_senhaExit(Sender: TObject);
     procedure txt_usuarioExit(Sender: TObject);
-    procedure txt_buscar_nomeChange(Sender: TObject);
+    procedure txt_buscar_usuarioChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btn_cancelarClick(Sender: TObject);
     procedure btn_editarClick(Sender: TObject);
     procedure dg_usuarioCellClick(Column: TColumn);
+    procedure rb_nomeClick(Sender: TObject);
   private
     { Private declarations }
     procedure associar_campos;
@@ -101,9 +102,9 @@ begin
 
   dm.tb_usuario.Edit;
 
-  txt_nome.Text := dm.tb_usuario.FieldByName('nome').Value;
-  txt_usuario.Text := dm.tb_usuario.FieldByName('usuario').Value;
-  txt_senha.Text := dm.tb_usuario.FieldByName('senha').Value;
+  txt_nome.Text := dm.query_usuario.FieldByName('nome').Value;
+  txt_usuario.Text := dm.query_usuario.FieldByName('usuario').Value;
+  txt_senha.Text := dm.query_usuario.FieldByName('senha').Value;
 
   id := dm.query_usuario.FieldByName('id_usuario').Value;
   usuario_antigo := dm.query_usuario.FieldByName('usuario').Value;
@@ -130,7 +131,6 @@ begin
   dm.tb_usuario.Active := True;
   listar;
   desabilitar_campos;
-  rb_nome.Checked := True;
 end;
 
 procedure Tfrm_usuario.habilitar_campos;
@@ -165,7 +165,12 @@ begin
   lbl_usuario.Top := 48;
 end;
 
-procedure Tfrm_usuario.txt_buscar_nomeChange(Sender: TObject);
+procedure Tfrm_usuario.rb_nomeClick(Sender: TObject);
+begin
+  txt_buscar_usuario.SetFocus;
+end;
+
+procedure Tfrm_usuario.txt_buscar_usuarioChange(Sender: TObject);
 begin
   buscar_nome;
 end;
@@ -207,6 +212,7 @@ begin
   mostrar_campos;
   btn_novo.Enabled     := True;
   btn_cancelar.Enabled := True;
+  btn_salvar.Enabled   := False;
 end;
 
 procedure Tfrm_usuario.btn_editarClick(Sender: TObject);
@@ -246,9 +252,10 @@ begin
   dm.query_usuario.SQL.Clear;
   dm.query_usuario.SQL.Add('UPDATE usuario SET nome = :nome, usuario = :usuario, senha = :senha WHERE id_usuario = :id_usuario');
 
-  dm.query_usuario.ParamByName('nome').Value    := Trim(txt_nome.Text);
-  dm.query_usuario.ParamByName('usuario').Value := Trim(txt_usuario.Text);
-  dm.query_usuario.ParamByName('senha').Value   := Trim(txt_senha.Text);
+  dm.query_usuario.ParamByName('id_usuario').Value := id;
+  dm.query_usuario.ParamByName('nome').Value       := Trim(txt_nome.Text);
+  dm.query_usuario.ParamByName('usuario').Value    := Trim(txt_usuario.Text);
+  dm.query_usuario.ParamByName('senha').Value      := Trim(txt_senha.Text);
   dm.query_usuario.ExecSQL;
 
   MessageDlg('Editado com Sucesso!', mtInformation, mbOKCancel, 0);
@@ -257,6 +264,7 @@ begin
   desabilitar_campos;
   btn_editar.Enabled  := False;
   btn_excluir.Enabled := False;
+  btn_novo.Enabled := True;
     
 end;
 
@@ -295,12 +303,12 @@ begin
   //Está limpando o campo SQL, caso tenha alguma outra requisição rodando
   dm.query_usuario.SQL.Clear;
 
-  //Está selecionando a partir da tabela cargo, onde o cargo for igual ai que foi passado no txt.
+  //Está selecionando a partir da tabela usuário, onde o cargo for igual ai que foi passado no txt.
   dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE usuario = ' + QuotedStr(Trim(txt_usuario.Text)));
 
   dm.query_usuario.Open;
 
-  //Verificação para cargo repetido
+  //Verificação para usuário repetido
   if not dm.query_usuario.IsEmpty then
     begin
       //Está atribuindo a variável cargo o resultado da pesquisa no campo cargo.
@@ -313,7 +321,7 @@ begin
 
   associar_campos;
 
-  //Vai entrar na DM, na tabela cargo e dar o comando de Salvar
+  //Vai entrar na DM, na tabela usuário e dar o comando de Salvar
   dm.tb_usuario.Post;
 
   MessageDlg('Salvo com sucesso!', mtInformation, mbOKCancel, 0);
@@ -329,8 +337,8 @@ procedure Tfrm_usuario.buscar_nome;
 begin
   dm.query_usuario.Close;
   dm.query_usuario.SQL.Clear;
-  dm.query_usuario.SQL.Add('SELECT * FROM usuario where usuario LIKE :usuario ORDER BY usuario ASC');
-  dm.query_usuario.ParamByName('usuario').Value := txt_usuario.Text + '%';
+  dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE usuario LIKE :usuario ORDER BY usuario ASC');
+  dm.query_usuario.ParamByName('usuario').Value := txt_buscar_usuario.Text + '%';
   dm.query_usuario.Open;
 end;
 

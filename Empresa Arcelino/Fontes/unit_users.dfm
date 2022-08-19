@@ -309,14 +309,15 @@ object frm_usuario: Tfrm_usuario
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
+      OnClick = rb_nomeClick
     end
-    object txt_buscar_nome: TSIMONEdit1
-      Left = 686
+    object txt_buscar_usuario: TSIMONEdit1
+      Left = 691
       Top = 26
       Width = 161
       Height = 25
       TabOrder = 1
-      OnChange = txt_buscar_nomeChange
+      OnChange = txt_buscar_usuarioChange
       MudarColor = 16773847
     end
   end
@@ -327,7 +328,6 @@ object frm_usuario: Tfrm_usuario
     Height = 533
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 638
     object Label2: TLabel
       Left = 48
       Top = 48
@@ -570,6 +570,7 @@ object frm_usuario: Tfrm_usuario
       Width = 737
       Height = 257
       DataSource = dm.ds_usuario
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 3
       TitleFont.Charset = ANSI_CHARSET
       TitleFont.Color = clWindowText
