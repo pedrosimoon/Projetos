@@ -22,7 +22,7 @@ object dm: Tdm
   object tb_cargo: TFDTable
     IndexFieldNames = 'id'
     Connection = conexao
-    TableName = 'cargo'
+    TableName = 'empresa_arcelino.cargo'
     Left = 29
     Top = 136
   end
@@ -55,7 +55,7 @@ object dm: Tdm
   end
   object tb_func: TFDTable
     Connection = conexao
-    TableName = 'funcionario'
+    TableName = 'empresa_arcelino.funcionario'
     Left = 112
     Top = 135
   end
@@ -197,7 +197,7 @@ object dm: Tdm
   object tb_usuario: TFDTable
     IndexFieldNames = 'id_usuario'
     Connection = conexao
-    TableName = 'usuario'
+    TableName = 'empresa_arcelino.usuario'
     Left = 201
     Top = 134
   end
@@ -211,12 +211,11 @@ object dm: Tdm
       FieldName = 'id_usuario'
       Origin = 'id_usuario'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
       Visible = False
     end
     object query_usuarionome: TStringField
       DisplayLabel = 'Nome'
-      DisplayWidth = 15
+      DisplayWidth = 10
       FieldName = 'nome'
       Origin = 'nome'
       Required = True
@@ -224,7 +223,7 @@ object dm: Tdm
     end
     object query_usuariousuario: TStringField
       DisplayLabel = 'Usu'#225'rio'
-      DisplayWidth = 15
+      DisplayWidth = 10
       FieldName = 'usuario'
       Origin = 'usuario'
       Required = True
@@ -232,7 +231,6 @@ object dm: Tdm
     end
     object query_usuariosenha: TStringField
       DisplayLabel = 'Senha'
-      DisplayWidth = 10
       FieldName = 'senha'
       Origin = 'senha'
       Required = True

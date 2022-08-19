@@ -107,7 +107,7 @@ type
 
 var
   frm_funcionario: Tfrm_funcionario;
-  id: String;
+  id        : String;
   cpf_antigo: String;
 
 implementation
@@ -216,16 +216,27 @@ begin
     begin
       dm.tb_func.Delete;
       MessageDlg('Funcionário deletado com sucesso!', mtInformation, mbOKCancel, 0);
+
+        desabilitar_campos;
+        limpar_campos;
+        btn_cancelar.Enabled   := True;
+        btn_novo.Enabled       := True;
+        btn_editar.Enabled     := False;
+        btn_excluir.Enabled    := False;
+
     end;
+
+
+  //DELETAR O USUÁRIO RELACIONADO AO FUNCIONÁRIO
+
+  dm.query_usuario.Close;
+  dm.query_usuario.SQL.Clear;
+  dm.query_usuario.SQL.Add('DELETE FROM usuario WHERE funcionario_id_funcionario = :id');
+  dm.query_func.ParamByName('id_funcionario').Value := id;
+  dm.query_usuario.ExecSQL;
 
   listar;
 
-  desabilitar_campos;
-  limpar_campos;
-  btn_cancelar.Enabled   := True;
-  btn_novo.Enabled       := True;
-  btn_editar.Enabled     := False;
-  btn_excluir.Enabled    := False;
 end;
 
 procedure Tfrm_funcionario.btn_novoClick(Sender: TObject);

@@ -51,6 +51,7 @@ type
     procedure btn_editarClick(Sender: TObject);
     procedure dg_usuarioCellClick(Column: TColumn);
     procedure rb_nomeClick(Sender: TObject);
+    procedure btn_excluirClick(Sender: TObject);
   private
     { Private declarations }
     procedure associar_campos;
@@ -97,7 +98,7 @@ begin
   habilitar_campos;
   btn_editar.Enabled   := True;
   btn_novo.Enabled     := False;
-  btn_excluir.Enabled  := False;
+  btn_excluir.Enabled  := True;;
   btn_cancelar.Enabled := True;
 
   dm.tb_usuario.Edit;
@@ -131,6 +132,7 @@ begin
   dm.tb_usuario.Active := True;
   listar;
   desabilitar_campos;
+  btn_cancelar.Enabled := False;
 end;
 
 procedure Tfrm_usuario.habilitar_campos;
@@ -142,9 +144,10 @@ end;
 
 procedure Tfrm_usuario.limpar_campos;
 begin
-  txt_nome.Text    := '';
-  txt_usuario.Text := '';
-  txt_senha.Text   := '';
+  txt_nome.Text      := '';
+  txt_sobrenome.Text := '';
+  txt_usuario.Text   := '';
+  txt_senha.Text     := '';
 end;
 
 procedure Tfrm_usuario.listar;
@@ -246,8 +249,6 @@ begin
         end;
    end;
 
-  //associar_campos;
-
   dm.query_usuario.Close;
   dm.query_usuario.SQL.Clear;
   dm.query_usuario.SQL.Add('UPDATE usuario SET nome = :nome, usuario = :usuario, senha = :senha WHERE id_usuario = :id_usuario');
@@ -268,12 +269,31 @@ begin
     
 end;
 
+procedure Tfrm_usuario.btn_excluirClick(Sender: TObject);
+begin
+  if MessageDlg('Deseja excluir o Usuário?', mtInformation, [mbYes, mbNo], 0) = mrYes then
+    begin
+      dm.tb_usuario.Delete;
+      MessageDlg('Usuário excluido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+
+      listar;
+
+      desabilitar_campos;
+      btn_novo.Enabled     := True;
+      btn_cancelar.Enabled := False;
+      btn_editar.Enabled   := False;
+      btn_excluir.Enabled  := False;
+    end;
+
+end;
+
 procedure Tfrm_usuario.btn_novoClick(Sender: TObject);
 begin
   listar;
   limpar_campos;
   habilitar_campos;
   mostrar_campos;
+  btn_novo.Enabled     := False;
   btn_editar.Enabled   := False;
   btn_excluir.Enabled  := False;
   btn_cancelar.Enabled := True;

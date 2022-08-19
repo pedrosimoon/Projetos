@@ -450,6 +450,7 @@ object frm_usuario: Tfrm_usuario
       Images = ImageList1
       Enabled = False
       Flat = True
+      OnClick = btn_excluirClick
     end
     object Label18: TLabel
       Left = 747
