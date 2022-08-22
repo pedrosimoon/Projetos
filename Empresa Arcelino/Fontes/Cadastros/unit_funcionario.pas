@@ -232,8 +232,8 @@ begin
   dm.query_usuario.Close;
   dm.query_usuario.SQL.Clear;
   dm.query_usuario.SQL.Add('DELETE FROM usuario WHERE funcionario_id_funcionario = :id');
-  dm.query_func.ParamByName('id_funcionario').Value := id;
-  dm.query_usuario.ExecSQL;
+  dm.query_usuario.ParamByName('id_usuario').Value := id;
+  dm.query_usuario.Execute;
 
   listar;
 
