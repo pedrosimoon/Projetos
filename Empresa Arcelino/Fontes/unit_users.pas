@@ -271,19 +271,19 @@ end;
 
 procedure Tfrm_usuario.btn_excluirClick(Sender: TObject);
 begin
-  if MessageDlg('Deseja excluir o Usuário?', mtInformation, [mbYes, mbNo], 0) = mrYes then
+  if MessageDlg('Deseja excluir o Usuário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
     begin
       dm.tb_usuario.Delete;
       MessageDlg('Usuário excluido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
-
-      listar;
-
-      desabilitar_campos;
-      btn_novo.Enabled     := True;
-      btn_cancelar.Enabled := False;
-      btn_editar.Enabled   := False;
-      btn_excluir.Enabled  := False;
     end;
+
+  listar;
+
+  desabilitar_campos;
+  btn_novo.Enabled     := True;
+  btn_cancelar.Enabled := False;
+  btn_editar.Enabled   := False;
+  btn_excluir.Enabled  := False;
 
 end;
 

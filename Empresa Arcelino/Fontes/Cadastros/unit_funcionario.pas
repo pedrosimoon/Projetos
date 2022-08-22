@@ -107,7 +107,7 @@ type
 
 var
   frm_funcionario: Tfrm_funcionario;
-  id        : String;
+  id        : Integer;
   cpf_antigo: String;
 
 implementation
@@ -212,30 +212,33 @@ end;
 
 procedure Tfrm_funcionario.btn_excluirClick(Sender: TObject);
 begin
-  if MessageDlg('Deseja excluir o registro?', TMsgDlgType.mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    begin
-      dm.tb_func.Delete;
-      MessageDlg('Funcionário deletado com sucesso!', mtInformation, mbOKCancel, 0);
+  try
+    if MessageDlg('Deseja excluir o registro?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
+      
+        dm.query_func.Close;
+        dm.query_func.SQL.Clear;
+        dm.query_func.SQL.Add('DELETE FROM funcionario WHERE id_funcionario = :id_funcionario');
+        dm.query_func.ParamByName('id_funcionario').Value := id;
+        dm.query_func.ExecSQL;
 
-        desabilitar_campos;
-        limpar_campos;
-        btn_cancelar.Enabled   := True;
-        btn_novo.Enabled       := True;
-        btn_editar.Enabled     := False;
-        btn_excluir.Enabled    := False;
+        MessageDlg('Funcionário deletado com sucesso!', mtInformation, mbOKCancel, 0);
+      end;
+  except
 
-    end;
+    ShowMessage('Erro inesperado ao Deletar!');
+  
+  end;
 
-
-  //DELETAR O USUÁRIO RELACIONADO AO FUNCIONÁRIO
-
-  dm.query_usuario.Close;
-  dm.query_usuario.SQL.Clear;
-  dm.query_usuario.SQL.Add('DELETE FROM usuario WHERE funcionario_id_funcionario = :id');
-  dm.query_usuario.ParamByName('id_usuario').Value := id;
-  dm.query_usuario.Execute;
 
   listar;
+
+  desabilitar_campos;
+  limpar_campos;
+  btn_cancelar.Enabled   := True;
+  btn_novo.Enabled       := True;
+  btn_editar.Enabled     := False;
+  btn_excluir.Enabled    := False;
 
 end;
 

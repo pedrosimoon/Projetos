@@ -214,31 +214,28 @@ object dm: Tdm
       Visible = False
     end
     object query_usuarionome: TStringField
-      DisplayLabel = 'Nome'
-      DisplayWidth = 10
+      DisplayLabel = 'NOME'
       FieldName = 'nome'
       Origin = 'nome'
       Required = True
       Size = 30
     end
     object query_usuariousuario: TStringField
-      DisplayLabel = 'Usu'#225'rio'
-      DisplayWidth = 10
+      DisplayLabel = 'USU'#193'RIO'
       FieldName = 'usuario'
       Origin = 'usuario'
       Required = True
       Size = 25
     end
     object query_usuariosenha: TStringField
-      DisplayLabel = 'Senha'
+      DisplayLabel = 'SENHA'
       FieldName = 'senha'
       Origin = 'senha'
       Required = True
       Size = 10
     end
     object query_usuariocargo: TStringField
-      DisplayLabel = 'Cargo'
-      DisplayWidth = 15
+      DisplayLabel = 'CARGO'
       FieldName = 'cargo'
       Origin = 'cargo'
       Required = True
