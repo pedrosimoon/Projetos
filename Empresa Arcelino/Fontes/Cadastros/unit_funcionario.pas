@@ -226,7 +226,7 @@ begin
       end;
   except
 
-    ShowMessage('Erro inesperado ao Deletar!');
+    MessageDlg('Erro inesperado ao Deletar o Funcionário!', mtError, mbOKCancel, 0);
   
   end;
 

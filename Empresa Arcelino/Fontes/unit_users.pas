@@ -271,11 +271,23 @@ end;
 
 procedure Tfrm_usuario.btn_excluirClick(Sender: TObject);
 begin
-  if MessageDlg('Deseja excluir o Usuário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    begin
-      dm.tb_usuario.Delete;
-      MessageDlg('Usuário excluido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
-    end;
+  try
+      if MessageDlg('Deseja excluir o Usuário?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
+        dm.query_usuario.Close;
+        dm.query_usuario.SQL.Clear;
+        dm.query_usuario.SQL.Add('DELETE FROM usuario WHERE id_usuario = :id_usuario');
+        dm.query_usuario.ParamByName('id_usuario').Value := id;
+        dm.query_usuario.ExecSQL;
+
+        MessageDlg('Usuário excluido com sucesso!', TMsgDlgType.mtInformation, mbOKCancel, 0);
+      end;
+  except
+
+    MessageDlg('Erro inesperado ao Deletar o Usuário!', mtError, mbOKCancel, 0);
+
+  end;
+
 
   listar;
 

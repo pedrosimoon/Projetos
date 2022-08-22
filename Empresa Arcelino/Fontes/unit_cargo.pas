@@ -129,12 +129,23 @@ end;
 
 procedure Tfrm_cargo.btn_excluirClick(Sender: TObject);
 begin
+  try
+      if MessageDlg('Deseja excluir o registro?', TMsgDlgType.mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+      begin
+        dm.query_cargo.Close;
+        dm.query_cargo.SQL.Clear;
+        dm.query_cargo.SQL.Add('DELETE FROM cargo WHERE id = :id');
+        dm.query_cargo.ParamByName('id').Value := id;
+        dm.query_cargo.ExecSQL;
 
-  if MessageDlg('Deseja excluir o registro?', TMsgDlgType.mtConfirmation, [mbYes, mbNo], 0) = mrYes then
-    begin
-      dm.tb_cargo.Delete;
-      MessageDlg('Cargo deletado com sucesso!', mtInformation, mbOKCancel, 0);
-    end;
+        MessageDlg('Cargo deletado com sucesso!', mtInformation, mbOKCancel, 0);
+      end;
+  except
+
+    MessageDlg('Erro inesperado ao Deletar o Cargo!', mtError, mbOKCancel, 0);
+
+  end;
+
 
   listar;
 
