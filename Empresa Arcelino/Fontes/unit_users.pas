@@ -154,7 +154,8 @@ procedure Tfrm_usuario.listar;
 begin
   dm.query_usuario.Close;
   dm.query_usuario.SQL.Clear;
-  dm.query_usuario.SQL.Add('SELECT * FROM usuario ORDER BY usuario ASC');
+  dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE cargo <> :cargo ORDER BY usuario ASC');
+  dm.query_usuario.ParamByName('cargo').Value := 'Admin';
   dm.query_usuario.Open;
 end;
 
@@ -182,7 +183,7 @@ procedure Tfrm_usuario.txt_senhaExit(Sender: TObject);
 begin
   if txt_senha.Text = '' then
     begin
-      MessageDlg('Campo Obrigatório!', mtInformation, mbOKCancel, 0);
+      MessageDlg('Campo Senha Obrigatório!', mtInformation, mbOKCancel, 0);
       txt_senha.SetFocus;
       exit;
     end;
@@ -192,7 +193,7 @@ procedure Tfrm_usuario.txt_usuarioExit(Sender: TObject);
 begin
   if txt_usuario.Text = '' then
     begin
-      MessageDlg('Campo Obrigatório!', mtInformation, mbOKCancel, 0);
+      MessageDlg('Campo Usuário Obrigatório!', mtInformation, mbOKCancel, 0);
       txt_usuario.SetFocus;
       exit;
     end;
@@ -227,7 +228,7 @@ begin
 
   if txt_usuario.Text = '' then
     begin
-      MessageDlg('Campo Obrigatório!', mtError, mbOKCancel, 0);
+      MessageDlg('Campo Usuário Obrigatório!', mtError, mbOKCancel, 0);
       txt_usuario.SetFocus;
       exit;
     end;
@@ -322,7 +323,7 @@ begin
   //Verificando se o campo está vazio.
   if Trim(txt_nome.Text) = '' then
     begin
-      MessageDlg('Campo Obrigatório!', mtInformation, mbOKCancel, 0);
+      MessageDlg('Campo Nome Obrigatório!', mtInformation, mbOKCancel, 0);
       txt_nome.SetFocus;
       exit;
     end;
@@ -369,8 +370,9 @@ procedure Tfrm_usuario.buscar_nome;
 begin
   dm.query_usuario.Close;
   dm.query_usuario.SQL.Clear;
-  dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE usuario LIKE :usuario ORDER BY usuario ASC');
+  dm.query_usuario.SQL.Add('SELECT * FROM usuario WHERE usuario LIKE :usuario AND cargo <> :cargo ORDER BY usuario ASC');
   dm.query_usuario.ParamByName('usuario').Value := txt_buscar_usuario.Text + '%';
+  dm.query_usuario.ParamByName('cargo').Value := 'Admin';
   dm.query_usuario.Open;
 end;
 

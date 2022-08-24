@@ -107,7 +107,7 @@ type
 
 var
   frm_funcionario: Tfrm_funcionario;
-  id        : Integer;
+  id        : String;
   cpf_antigo: String;
 
 implementation
@@ -200,6 +200,22 @@ begin
   dm.query_func.ParamByName('cargo').Value             := cb_cargo.Text;
   dm.query_func.ExecSQL;
 
+  //EDITAR O CARGO DO USUÁRIO
+  try
+    dm.query_usuario.Close;
+    dm.query_usuario.SQL.Clear;
+    dm.query_usuario.SQL.Add('UPDATE usuario SET cargo = :cargo WHERE funcionario_id_funcionario = :id_usuario');
+    dm.query_usuario.ParamByName('cargo').Value      := cb_cargo.Text;
+    dm.query_usuario.ParamByName('id_usuario').Value := id;
+    dm.query_usuario.ExecSQL;
+  except
+
+    MessageDlg('Erro inesperado ao Editar o Usuário!', mtError, mbOKCancel, 0);
+    exit;
+
+  end;
+
+
   MessageDlg('Editado com sucesso!', mtInformation, mbOKCancel, 0);
 
   listar;
@@ -227,6 +243,7 @@ begin
   except
 
     MessageDlg('Erro inesperado ao Deletar o Funcionário!', mtError, mbOKCancel, 0);
+    exit;
   
   end;
 

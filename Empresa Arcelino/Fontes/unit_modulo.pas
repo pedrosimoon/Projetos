@@ -63,6 +63,8 @@ var
   sobrenome_func : String;
   cargo_func     : String;
   chamada        : String;
+  nome_usuario   : String;
+  cargo_usuario  : String;
 
 implementation
 

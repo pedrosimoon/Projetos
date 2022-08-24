@@ -211,6 +211,7 @@ object dm: Tdm
       FieldName = 'id_usuario'
       Origin = 'id_usuario'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
       Visible = False
     end
     object query_usuarionome: TStringField

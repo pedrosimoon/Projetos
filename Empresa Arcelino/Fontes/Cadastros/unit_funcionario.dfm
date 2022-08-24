@@ -762,7 +762,7 @@ object frm_funcionario: Tfrm_funcionario
       end
       object txt_cep_func: TSIMONMaskEditBD
         Left = 624
-        Top = 87
+        Top = 81
         Width = 152
         Height = 25
         EditMask = '99.999-999;1;_'

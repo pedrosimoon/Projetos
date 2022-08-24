@@ -14,9 +14,9 @@ object frm_menu: Tfrm_menu
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  Position = poScreenCenter
+  Position = poMainFormCenter
   WindowState = wsMaximized
-  OnCreate = FormCreate
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 17
   object Panel1: TPanel
@@ -39,6 +39,67 @@ object frm_menu: Tfrm_menu
       Color = clBtnShadow
       ParentBackground = False
       TabOrder = 0
+      object pnl_info_logado: TPanel
+        Left = 0
+        Top = 464
+        Width = 289
+        Height = 87
+        Align = alBottom
+        BevelOuter = bvNone
+        TabOrder = 0
+        object Label2: TLabel
+          Left = 26
+          Top = 54
+          Width = 45
+          Height = 21
+          Caption = 'Cargo:'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbl_cargo: TLabel
+          Left = 73
+          Top = 54
+          Width = 9
+          Height = 21
+          Caption = '...'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lbl_usuario: TLabel
+          Left = 73
+          Top = 22
+          Width = 9
+          Height = 21
+          Caption = '...'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 13
+          Top = 22
+          Width = 61
+          Height = 21
+          Caption = 'Usu'#225'rio: '
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
     end
   end
   object MainMenu1: TMainMenu
@@ -50,30 +111,37 @@ object frm_menu: Tfrm_menu
     object Cadastros1: TMenuItem
       Caption = 'Cadastros'
       ImageIndex = 4
-      object Usurios1: TMenuItem
+      object Usuario1: TMenuItem
         Caption = 'Usu'#225'rios'
-        OnClick = Usurios1Click
+        Enabled = False
+        OnClick = Usuario1Click
       end
-      object Cargos3: TMenuItem
+      object cargo1: TMenuItem
         Caption = 'Cargos'
-        OnClick = Cargos3Click
+        Enabled = False
+        OnClick = cargo1Click
       end
-      object Funcionrio1: TMenuItem
+      object funcionario1: TMenuItem
         Caption = 'Funcion'#225'rio'
-        OnClick = Funcionrio1Click
+        Enabled = False
+        OnClick = funcionario1Click
       end
-      object Cadastros2: TMenuItem
+      object cliente1: TMenuItem
         Caption = 'Cliente'
-        OnClick = Cadastros2Click
+        Enabled = False
+        OnClick = cliente1Click
       end
-      object Fornecedores1: TMenuItem
+      object veiculo1: TMenuItem
         Caption = 'Ve'#237'culo'
+        Enabled = False
       end
-      object Funcionrios1: TMenuItem
+      object fornecedor1: TMenuItem
         Caption = 'Fornecedor'
+        Enabled = False
       end
-      object Cargos1: TMenuItem
+      object produto1: TMenuItem
         Caption = 'Produto'
+        Enabled = False
       end
     end
     object Manuteno1: TMenuItem

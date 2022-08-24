@@ -14,6 +14,7 @@ object frm_login: Tfrm_login
   OldCreateOrder = False
   WindowState = wsMaximized
   OnCanResize = FormCanResize
+  OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 17
   object pnl_fundo: TPanel
