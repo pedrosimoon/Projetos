@@ -48,7 +48,7 @@ object frm_menu: Tfrm_menu
         BevelOuter = bvNone
         TabOrder = 0
         object Label2: TLabel
-          Left = 26
+          Left = 82
           Top = 54
           Width = 45
           Height = 21
@@ -61,7 +61,7 @@ object frm_menu: Tfrm_menu
           ParentFont = False
         end
         object lbl_cargo: TLabel
-          Left = 73
+          Left = 129
           Top = 54
           Width = 9
           Height = 21
@@ -74,7 +74,7 @@ object frm_menu: Tfrm_menu
           ParentFont = False
         end
         object lbl_usuario: TLabel
-          Left = 73
+          Left = 129
           Top = 22
           Width = 9
           Height = 21
@@ -87,7 +87,7 @@ object frm_menu: Tfrm_menu
           ParentFont = False
         end
         object Label1: TLabel
-          Left = 13
+          Left = 69
           Top = 22
           Width = 61
           Height = 21
