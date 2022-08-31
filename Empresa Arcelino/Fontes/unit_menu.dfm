@@ -138,6 +138,7 @@ object frm_menu: Tfrm_menu
       object fornecedor1: TMenuItem
         Caption = 'Fornecedor'
         Enabled = False
+        OnClick = fornecedor1Click
       end
       object produto1: TMenuItem
         Caption = 'Produto'

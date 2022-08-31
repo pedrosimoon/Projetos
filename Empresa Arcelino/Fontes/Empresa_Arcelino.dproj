@@ -133,6 +133,10 @@
             <Form>frm_cliente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="unit_fornecedores.pas">
+            <Form>frm_forn</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -159,7 +163,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="..\Output\Empresa_Arcelino.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\..\Projetos_Delphi\Empresa Arcelino\Output\Empresa_Arcelino.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Empresa_Arcelino.exe</RemoteName>
                         <Overwrite>true</Overwrite>

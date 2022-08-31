@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls,
   System.ImageList, Vcl.ImgList, unit_funcionario, unit_users, unit_cargo,
-  unit_cliente, Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, unit_modulo;
+  unit_cliente, Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, unit_modulo, unit_fornecedores;
 
 type
   Tfrm_menu = class(TForm)
@@ -38,6 +38,7 @@ type
     procedure cargo1Click(Sender: TObject);
     procedure cliente1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure fornecedor1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -81,6 +82,12 @@ begin
       fornecedor1.Enabled  := True;
       produto1.Enabled     := True;
     end;
+end;
+
+procedure Tfrm_menu.fornecedor1Click(Sender: TObject);
+begin
+  frm_forn := Tfrm_forn.Create(self);
+  frm_forn.ShowModal;
 end;
 
 procedure Tfrm_menu.funcionario1Click(Sender: TObject);
